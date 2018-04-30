@@ -3,14 +3,17 @@ import { NgModule } from '@angular/core';
 //No caso, BrowserModule, ao ser carregado, já disponibiliza diversos recursos padrões do Angular sem termos que importar cada recurso individualmente como as diretivas ngIf e ngFor
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
+import { FotoModule } from './foto/foto.module';
 
 //NgModule transforma a classe ES6 em um MODULO do ANGULAR
 @NgModule({
     //Como o modulo rodará no navegador é necessário importar o BrowserModule
-    imports: [ BrowserModule ],
+    imports: [ BrowserModule, FotoModule ],
     //Declaretion é o que o modulo declara, ou seja, os componentes que fizerem parte do módulo, precisam ser registrados
     declarations: [ AppComponent ],
     //Indica qual será o primeiro componente carregado, nesse caso queremos que seja o AppComponent
     bootstrap: [ AppComponent ]
 })
-export class AppModule {}
+export class AppModule {
+
+}
