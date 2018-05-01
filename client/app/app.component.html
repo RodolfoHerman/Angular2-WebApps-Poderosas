@@ -1,13 +1,2 @@
-<div class="jumbotron">
-    <h1 class="text-center">Projeto</h1>
-</div>
-
-<div class="container">
-
-    <!-- Utilizando a diretiva ngFor para realizar o loop no array de fotos de component -->
-    <foto *ngFor="let foto of fotos"  [url]="foto.url" [titulo]="foto.titulo"></foto>
-    <!-- <foto *ngFor="let foto of fotos"  url="{{ foto.url }}" titulo="{{ foto.titulo }}"></foto> -->
-
-    <!-- <foto url="img/leao.jpg" titulo="Leão"></foto>
-    <foto url="img/leao-branco.jpg" titulo="Leão branco"></foto> -->
-</div>
+<!-- O 'app.component.html' servirá como receptáculo para os componentes carregados condicionalmente através das rotas da aplicação e para isso é aplicada a diretiva '<router-outlet></router-outlet>' -->
+<router-outlet></router-outlet>

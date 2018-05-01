@@ -10,12 +10,17 @@ import { HttpModule } from '@angular/http';
 //Necessário importar pois a função MAP não existe no OBSERVABLE em 'app.component.ts'
 import 'rxjs/add/operator/map';
 
+import { PainelModule } from './painel/painel.module';
+import { CadastroComponent } from './cadastro/cadastro.component';
+import { ListagemComponent } from './listagem/listagem.component';
+import { routing } from './app.routes';
+
 //NgModule transforma a classe ES6 em um MODULO do ANGULAR
 @NgModule({
     //Como o modulo rodará no navegador é necessário importar o BrowserModule
-    imports: [ BrowserModule, FotoModule, HttpModule ],
+    imports: [ BrowserModule, FotoModule, HttpModule, PainelModule, routing ],
     //Declaretion é o que o modulo declara, ou seja, os componentes que fizerem parte do módulo, precisam ser registrados
-    declarations: [ AppComponent ],
+    declarations: [ AppComponent, CadastroComponent, ListagemComponent ],
     //Indica qual será o primeiro componente carregado, nesse caso queremos que seja o AppComponent
     bootstrap: [ AppComponent ]
 })

@@ -1,0 +1,37 @@
+<div class="jumbotron">
+    <h1 class="text-center">Projeto</h1>
+</div>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+            <form>
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <!-- Para acessar uma página através de LINKS na página, em vez de utilizar o 'href' é necessário utilizar a diretiva 'routerLink' e realizar o binding [] passando um array com a rota desejada no atributo -->
+                        <a [routerLink]="['/cadastro']" class="btn btn-primary">
+                            Nova foto
+                        </a>
+                    </span>
+                </div> 
+            </form>
+        </div> <!-- fim col-md-12 -->
+    </div> <!-- fim row -->    
+    
+    <br>
+    
+    <div class="row">
+        <painel *ngFor="let foto of fotos" [titulo]="foto.titulo" class="col-md-2">
+
+            <!-- Utilizando a diretiva ngFor para realizar o loop no array de fotos de component -->
+            <foto  [url]="foto.url" [titulo]="foto.titulo"></foto>
+            <!-- <foto *ngFor="let foto of fotos"  url="{{ foto.url }}" titulo="{{ foto.titulo }}"></foto> -->
+    
+            <!-- <foto url="img/leao.jpg" titulo="Leão"></foto>
+            <foto url="img/leao-branco.jpg" titulo="Leão branco"></foto> -->
+        
+        </painel>
+    </div>
+
+</div>
