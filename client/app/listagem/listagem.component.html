@@ -14,6 +14,13 @@
                             Nova foto
                         </a>
                     </span>
+                    <!-- Declaração de variável local que pode ser acessada em qualquer lugar do template. A variável local armazena o elemento no qual ela foi adicionada -->
+                    <!-- Como o angular só atualizará a view através de eventos assincronos é necessário usar um artificil para que toda vez que é digitado algo no input ele dispara o evento e atualiza a página pelo método keyup. O keyup está entre parênteses que siginifica associação de eventos (EVENT BIDING). Toda vez que é digitado no input o evento será disparado e não realizará nada pois ele está amarrado a um número qualquer  -->
+                    <input #textoProcurado (keyup)="0" class="form-control" placeholder="filtrar pelo título da foto">
+
+                    <!-- Outra forma de declaração de variável é através da sintaxe var-nome -->
+                    <!-- <input var-textoProcurado (keyup)="0" class="form-control" placeholder="filtrar pelo título da foto"> -->
+
                 </div> 
             </form>
         </div> <!-- fim col-md-12 -->
@@ -22,7 +29,9 @@
     <br>
     
     <div class="row">
-        <painel *ngFor="let foto of fotos" [titulo]="foto.titulo" class="col-md-2">
+        <!-- Utilizando o PIPE (Filtro, transformação) para colocar o título das fotos em caixa alta -->
+        <!-- Criação do PIPE filtroPorTitulo e passando como parâmetro a variável local textoProcurado e seu valor 'value' -->
+        <painel *ngFor="let foto of fotos | filtroPorTitulo: textoProcurado.value" [titulo]="foto.titulo | uppercase" class="col-md-2">
 
             <!-- Utilizando a diretiva ngFor para realizar o loop no array de fotos de component -->
             <foto  [url]="foto.url" [titulo]="foto.titulo"></foto>
