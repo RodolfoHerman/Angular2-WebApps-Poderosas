@@ -15,14 +15,30 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { ListagemComponent } from './listagem/listagem.component';
 import { routing } from './app.routes';
 
+//Necessário para a utilização do [(ngModel)] para o two-way data binding
+import { FormsModule } from '@angular/forms'
+
 //NgModule transforma a classe ES6 em um MODULO do ANGULAR
 @NgModule({
     //Como o modulo rodará no navegador é necessário importar o BrowserModule
-    imports: [ BrowserModule, FotoModule, HttpModule, PainelModule, routing ],
+    imports: [ 
+        BrowserModule, 
+        FotoModule, 
+        HttpModule, 
+        PainelModule, 
+        routing, 
+        FormsModule
+    ],
     //Declaretion é o que o modulo declara, ou seja, os componentes que fizerem parte do módulo, precisam ser registrados
-    declarations: [ AppComponent, CadastroComponent, ListagemComponent ],
+    declarations: [ 
+        AppComponent, 
+        CadastroComponent, 
+        ListagemComponent 
+    ],
     //Indica qual será o primeiro componente carregado, nesse caso queremos que seja o AppComponent
-    bootstrap: [ AppComponent ]
+    bootstrap: [ 
+        AppComponent 
+    ]
 })
 export class AppModule {
 

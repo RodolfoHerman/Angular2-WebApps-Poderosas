@@ -1,1 +1,66 @@
-<h1 class="text-center">Cadastro de Fotos</h1>
+<div class="container">
+    <!-- Para realizar o submit do formulário o ANGULAR possui a diretiva 'submit' -->
+    <!-- O $event é um objeto do Angular que encapsula o evento original do JavaScript e que sabe tudo sobre o evento que foi disparado. Através desse objeto podemos saber quem foi o alvo (target) do evento. Se sabemos o target, podemos consultar o seu valor e capturar o que o usuário digitou. -->
+    <form class="row" (submit)="cadastrar($event)">
+
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label>Título</label>
+
+                <!-- O ANGULAR simplifica o two-way data binding através da diretiva "ngModel". É necessário importa-la. Como é algo bastante utilizado, a importação é feita no 'app.module.ts' para 'FormsModule'. Além disso é necessário colocar o ATRIBUTO 'name' nas TAGS -->
+
+                <input 
+                    name="titulo"
+                    [(ngModel)]="foto.titulo"
+                    autocomplete="off"
+                    class="form-control">
+
+
+                <!-- Utilizando o ngModel -->
+                <!-- <input 
+                    (input)="foto.titulo = $event.target.value" 
+                    [value]="foto.titulo" 
+                    class="form-control" 
+                    autocomplete="off"> -->
+
+            </div>
+            <div class="form-group">
+                <label>URL</label>
+
+                <input 
+                    name="url" 
+                    [(ngModel)]="foto.url"
+                    autocomplete="off"
+                    class="form-control">
+
+                <!-- Utilizando o ngModel -->
+                <!-- <input (input)="foto.url = $event.target.value" [value]="foto.url" class="form-control" autocomplete="off"> -->
+            </div>
+            <div class="form-group">
+                <label>Descrição</label>
+
+                <textarea 
+                    name="descricao"
+                    [(ngModel)]="foto.descricao"
+                    autocomplete="off"
+                    class="form-control">
+                </textarea>
+
+
+                <!-- Utilizando o ngModel -->
+                <!-- <textarea (input)="foto.descricao = $event.target.value" [value]="foto.descricao" class="form-control" autocomplete="off"></textarea> -->
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Salvar</button>
+
+            <a [routerLink]="['']" class="btn btn-primary">Voltar</a>
+
+            <hr>
+
+        </div>
+
+    </form>
+</div>
+
+<!-- Obs: o one way "data binding" '[]' é o envio dos dados do MODEL para o TEMPLATE e o "event binding" '()' é o envio dos dados do TEMPLATE para o MODEL -->
