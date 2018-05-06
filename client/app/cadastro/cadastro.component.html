@@ -1,8 +1,11 @@
 <div class="container">
+    <h1 class="text-center">{{ foto.titulo }}</h1>
     <!-- Para realizar o submit do formulário o ANGULAR possui a diretiva 'submit' -->
     <!-- O $event é um objeto do Angular que encapsula o evento original do JavaScript e que sabe tudo sobre o evento que foi disparado. Através desse objeto podemos saber quem foi o alvo (target) do evento. Se sabemos o target, podemos consultar o seu valor e capturar o que o usuário digitou. -->
-    <form class="row" (submit)="cadastrar($event)">
-
+    <!-- Realizar o data binding com o atributo 'meuForm' do componente através da diretiva 'formGroup' -->
+    <form [formGroup]="meuForm" class="row" (submit)="cadastrar($event)">
+    <!-- <form #meuForm="ngForm" class="row" (submit)="cadastrar($event)"> -->
+        <!-- Validção do completa do formulário para que o botão salvar seja habilitado. Veja que a variável de template 'meuForm' recebe um valor de controle do Angular 'ngForm' que é um objeo de validação do form -->
         <div class="col-md-6">
 
             <div class="form-group">
@@ -10,11 +13,49 @@
 
                 <!-- O ANGULAR simplifica o two-way data binding através da diretiva "ngModel". É necessário importa-la. Como é algo bastante utilizado, a importação é feita no 'app.module.ts' para 'FormsModule'. Além disso é necessário colocar o ATRIBUTO 'name' nas TAGS -->
 
+                <!-- Validação orientada a modelo -->
                 <input 
+                    name="titulo"
+                    formControlName="titulo"
+                    [(ngModel)]="foto.titulo"
+                    autocomplete="off"
+                    class="form-control"
+                >
+
+                <!-- *ngIf é um atalho para uma das formas possíveis -->
+                <!-- <div [ngIf]="!meuForm.controls.titulo.valid">
+                <div template="ngIf !meuForm.controls.titulo.valid"> -->
+                <div *ngIf="!meuForm.controls.titulo.valid">
+                    
+                        <!-- Se houver algum erro de validação, o objeto 'errors' será criado e nele adicionadas propriedades que equivalem a cada validador que adicionamos. -->
+                    <span *ngIf="meuForm.controls.titulo.errors.required" class="form-control alert-danger">
+                        Título obrigatório !!
+                    </span>
+
+                    <span *ngIf="meuForm.controls.titulo.errors.minlength" class="form-control alert-danger">
+                        O título de possuir no mínimo 4 caracteres !
+                    </span>
+
+                </div>
+
+
+                
+
+
+
+                <!-- Validação orientada a template. Aqui utiliza o 'required' do HTML5, cria-se uma variável de template '#titulo' atribui a ela um valor de controle do angular 'ngModel' que é um objeto de validação do campo e no span abaixo verifica se está OK através do 'invalid'. É necessário importar o 'FormsModule' em app.module.ts -->
+                <!-- <input 
+                    required
+                    #titulo="ngModel"
+                    
                     name="titulo"
                     [(ngModel)]="foto.titulo"
                     autocomplete="off"
                     class="form-control">
+
+                <span *ngIf="titulo.invalid" class="form-control alert-danger">
+                    Título obrigatório
+                </span> -->
 
 
                 <!-- Utilizando o ngModel -->
@@ -28,11 +69,32 @@
             <div class="form-group">
                 <label>URL</label>
 
-                <input 
+                <input
+                    name="url"
+                    formControlName="url"
+                    [(ngModel)]="foto.url"
+                    autocomplete="off"
+                    class="form-control"
+                >
+
+                <span *ngIf="meuForm.controls.url.invalid" class="form-control alert-danger">
+                    URL obrigatória !!
+                </span>
+
+
+                <!-- <input 
+                    required
+                    #url="ngModel"
+
                     name="url" 
                     [(ngModel)]="foto.url"
                     autocomplete="off"
                     class="form-control">
+
+                <span *ngIf="url.invalid" class="form-control alert-danger">
+                    URL obrigatória
+                </span> -->
+
 
                 <!-- Utilizando o ngModel -->
                 <!-- <input (input)="foto.url = $event.target.value" [value]="foto.url" class="form-control" autocomplete="off"> -->
@@ -40,8 +102,10 @@
             <div class="form-group">
                 <label>Descrição</label>
 
+                <!-- Mesmo o campo descrição não possuir validação é necessário fazer o binding pelo 'formControlName' para a persistencia dos dados no servidor -->
                 <textarea 
                     name="descricao"
+                    formControlName="descricao"
                     [(ngModel)]="foto.descricao"
                     autocomplete="off"
                     class="form-control">
@@ -52,11 +116,22 @@
                 <!-- <textarea (input)="foto.descricao = $event.target.value" [value]="foto.descricao" class="form-control" autocomplete="off"></textarea> -->
             </div>
             
-            <button type="submit" class="btn btn-primary">Salvar</button>
+            <!-- Validação orientada a modelo -->
+            <button [disabled]="meuForm.invalid" type="submit" class="btn btn-primary">Salvar</button>
+
+
+            <!-- Realiza-se um data binding no atributo 'disabled' para avaliar a expressão e verificar se o formulário está válido -->
+            <!-- <button type="submit" [disabled]="meuForm.form.invalid" class="btn btn-primary">Salvar</button> -->
 
             <a [routerLink]="['']" class="btn btn-primary">Voltar</a>
 
             <hr>
+
+        </div>
+
+        <div class="col-md-6">
+
+        <foto [titulo]="foto.titulo" [url]="foto.url"></foto>
 
         </div>
 

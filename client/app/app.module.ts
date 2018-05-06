@@ -15,8 +15,8 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { ListagemComponent } from './listagem/listagem.component';
 import { routing } from './app.routes';
 
-//Necessário para a utilização do [(ngModel)] para o two-way data binding
-import { FormsModule } from '@angular/forms'
+//Necessário para a utilização do [(ngModel)] para o two-way data binding e o ReactiveFormsModule para realizar a validação orientada a modelo
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 //NgModule transforma a classe ES6 em um MODULO do ANGULAR
 @NgModule({
@@ -27,7 +27,8 @@ import { FormsModule } from '@angular/forms'
         HttpModule, 
         PainelModule, 
         routing, 
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule
     ],
     //Declaretion é o que o modulo declara, ou seja, os componentes que fizerem parte do módulo, precisam ser registrados
     declarations: [ 
